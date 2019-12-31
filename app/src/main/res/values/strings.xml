@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="status">Состояние загрузки</string>
+    <string name="textBt1">Загрузить файл</string>
+    <string name="textBt2">Сменить фон</string>
+</resources>
