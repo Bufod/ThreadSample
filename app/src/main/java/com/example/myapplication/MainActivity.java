@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,18 +29,18 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
     }
 
-    void imitationDownload(){
-        int n = 1000;
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                Log.i("imitationDownload", Integer.toString(i*j));
-    }
     View.OnClickListener download(){
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imitationDownload();
-                tw.setText("Загружено!");
+                Handler h = new Handler(){
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        tw.setText("Загружено!");
+                    }
+                };
+                MyThread myThread = new MyThread(h);
+                myThread.t.start();
             }
         };
     }
